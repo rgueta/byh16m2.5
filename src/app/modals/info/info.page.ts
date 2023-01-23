@@ -182,7 +182,11 @@ getSection(string,section){
       mediaType: this.camera.MediaType.PICTURE,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       encodingType: this.camera.EncodingType.JPEG,
+      // destinationType: this.camera.DestinationType.DATA_URL,
       destinationType: this.camera.DestinationType.FILE_URI,
+      // allowEdit:true,
+      targetHeight:640,
+      targetWidth:480
     }
   
     console.log('camera.MediaType.PICTURE: ' + this.camera.MediaType.PICTURE);
@@ -197,7 +201,9 @@ getSection(string,section){
       this.localDescription = String(this.imageFileName);
       console.log('--> imageURI: ' + this.imageURI)
       console.log("--> localUrl: " + this.localUrl)
-      console.log("--> resized image: " + this.getSection(this.imageURI,'path') + 'resizedImg.jpg')
+      const fullPath = this.getSection(this.imageURI,'path') + 'resizedImg.jpg';
+      console.log("--> fullPath : " + fullPath)
+           
           
     }, (err) => {
       console.log('Error --> ',err);
