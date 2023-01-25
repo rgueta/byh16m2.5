@@ -112,11 +112,15 @@ export class VisitorsPage implements OnInit {
         this.sim ='';
         this.contactSelected = data['data']
 
+        const phoneAcc = Object.keys(this.contactSelected['phoneNumbers']).length
+        const emailsAcc = Object.keys(this.contactSelected['emails']).length;
+
+        this.name = this.contactSelected['displayName'];
+        if(phoneAcc > 0)  this.sim = this.contactSelected['phoneNumbers'][0]['number'];
         
-        if(this.contactSelected['phoneNumbers']) this.name = this.contactSelected['displayName'];
-        if(this.contactSelected['phoneNumbers'][0])  this.sim = this.contactSelected['phoneNumbers'][0]['number'];
-        if(this.contactSelected['emails'][0].lenght > 0) this.email = this.contactSelected['emails'][0]['address'];
+        if(emailsAcc> 0) this.email = this.contactSelected['emails'][0]['address'];
       });
+
       return await modal.present();
     }
 
