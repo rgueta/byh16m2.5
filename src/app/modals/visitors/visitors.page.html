@@ -8,8 +8,8 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup] = "RegisterForm" (submit)="onSubmit()" >
-
+  <!-- <form [formGroup] = "RegisterForm" (submit)="onSubmit()" > -->
+  <form [formGroup] = "RegisterForm" >
     <ion-card>
       <div class="visitorImgWrapper">
         <img class="visitorImg" src="../../../assets/logo_v2.png">
@@ -60,7 +60,7 @@
 
         <ion-item>
           <ion-input class='input' type="text" name='sim' 
-           required formControlName="LocalSim"
+           required formControlName="LocalSim" [(ngModel)]="sim"
           placeholder="Numero de celular" value={{sim}} ></ion-input>
           <br><br>
         </ion-item>

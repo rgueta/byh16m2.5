@@ -27,7 +27,7 @@ export class VisitorsPage implements OnInit {
   @Input() gender:String;
   @Input() avatar:String;
 
-  
+  // localSim : String;
 
   // contacts = [];
   myToast : any;
@@ -62,7 +62,7 @@ export class VisitorsPage implements OnInit {
 
     console.log({'userId': this.userId['value'],'name':this.name,'email':this.email,'sim':this.sim,'address':this.address,'gender':this.gender,'avatar':this.avatar});
 
-    // await this.api.postData('api/visitors',{'userId': this.userId['value'],'name':this.name,'email':this.email,'sim':this.sim,'address':this.address,'gender':this.gender,'avatar':this.avatar});
+    await this.api.postData('api/visitors/' + this.userId['value'] ,{'userId': this.userId['value'],'name':this.name,'email':this.email,'sim':this.sim,'address':this.address,'gender':this.gender,'avatar':this.avatar});
     
   }
 
