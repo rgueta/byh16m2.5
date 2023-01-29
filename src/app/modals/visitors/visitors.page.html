@@ -61,17 +61,21 @@
         <ion-item>
           <ion-input class='input' type="text" name='sim' 
            required formControlName="LocalSim" [(ngModel)]="sim"
-          placeholder="Numero de celular" value={{sim}} ></ion-input>
+            placeholder="Numero de celular" value={{sim}} >
+          </ion-input>
           <br><br>
         </ion-item>
-  
-          <ion-item class="wrap-input">
-            <ion-label>Genero</ion-label>
-            <ion-select value="M" okText="Aceptar" cancelText="Cancelar" >
-              <ion-select-option value="M">Hombre</ion-select-option>
-              <ion-select-option value="F">Mujer</ion-select-option>
-            </ion-select>
-          </ion-item>
+
+
+        <ion-item class="wrap-input">
+          <ion-label>Genero</ion-label>
+          <ion-select value="gender" [(ngModel)]="gender" [ngModelOptions]="{standalone: true}"
+          okText="Aceptar" cancelText="Cancelar" >
+            <ion-select-option value="M" >Hombre</ion-select-option>
+            <ion-select-option value="F" >Mujer</ion-select-option>
+          </ion-select>
+        </ion-item>
+
           <!-- <ion-item>
             <ion-input class='input' type="text" name='avatar' required placeholder="Image" value={{sim}} [(ngModel)]="sim" ></ion-input>
             <br><br>
