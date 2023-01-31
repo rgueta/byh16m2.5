@@ -29,7 +29,7 @@ export class CodesPage {
   diff: any;
   myRoles:{};
   myToken:any;
-
+  load_codes : true;
 
   constructor(public api : DatabaseService,
               public toast:ToastController,
@@ -41,9 +41,6 @@ export class CodesPage {
       }
 
   async ngOnInit(){
-    // this.myToken = await this.storage.get('my-token');
-    // this.userId = await this.storage.get('my-userId');
-    // this.myRoles = await this.storage.get('my-roles');
 
     this.myToken = await Storage.get({key : 'my-token'});
     await Storage.get({key: 'my-userId'}).then(uId => {

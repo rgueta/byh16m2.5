@@ -30,6 +30,9 @@
        <ion-item class='detail-item'>
         <ion-label> Casa: <b>{{item.casa}}</b></ion-label>
       </ion-item>
+        <ion-item class='detail-item'>
+          <ion-label> Codigo: <b>{{item.code}}</b></ion-label>
+      </ion-item>
         <ion-item  *ngIf="myEventsList?.length > 0" >
          <ion-label class='labelInput' floating>Users:</ion-label>
          <ion-select ok-text="Seleccionar" cancel-text="Cancelar" (ionChange)="setupCode(visitorId)" >

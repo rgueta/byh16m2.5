@@ -33,6 +33,7 @@ export class UpdCodesModalPage implements OnInit {
   StrPlatform = '';
   // comment = '';
   visitorId='';
+  public code_expiry:any;
 
   // -- Validators  ------------
 
@@ -68,7 +69,11 @@ export class UpdCodesModalPage implements OnInit {
       this.userId = val_userId.value;
     });
 
-    console.log('Soy el usuario : ' + this.userId);
+    await Storage.get({key : 'code_expiry'}).then(val_code_expiry => {
+      this.code_expiry = Number(val_code_expiry.value);
+    });
+
+    console.log('Soy el usuario : ' + this.userId + ', code_expiry: ' + this.code_expiry.toString());
     this.code = this.genCode().toString();
     this.getVisitors();
     this.initDates();
@@ -123,7 +128,7 @@ getPlatform(){
 
   async initDates(){
     this.initial = new Date();
-    this.expiry = new Date(new Date().setHours(new Date().getHours() + 4));
+    this.expiry = new Date(new Date().setHours(new Date().getHours() + this.code_expiry));
     this.diff =  await (Math.abs(this.initial.getTime() - this.expiry.getTime()) / 3600000).toFixed(1);
   }
 
@@ -221,6 +226,8 @@ getPlatform(){
        // send code to visitor
        await this.sendSMS(this.visitorSim,'codigo ' + coreName['value'] + ': ' + this.code + 
        '  Expira en ' + expire + ' Hrs.' )
+
+       this.closeModal();
  
       //  this.showAlerts('Message', 'Se envio el codigo')
 

@@ -27,6 +27,7 @@ const USER_ROLE = 'my-role';
 const CORE_NAME = 'core-name';
 const LOCATION = 'location';
 const TWILIO = 'twilio';
+const CODE_EXPIRY = 'code_expiry';
  
 @Injectable({
   providedIn: 'root'
@@ -77,7 +78,7 @@ export class AuthenticationService{
   // Sign in a user and store access and refres token
   login(credentials: {email, pwd}): Observable<any> {
     return this.http.post(`${this.REST_API_SERVER}api/auth/signin`, credentials).pipe(
-      switchMap((tokens: {accessToken, refreshToken, userId, roles, sim, core_sim, coreName, location}) => {
+      switchMap((tokens: {accessToken, refreshToken, userId, roles, sim, core_sim, coreName, location, code_expiry}) => {
         this.currentAccessToken = tokens.accessToken;
 
         // this.storage.set(USERID,tokens.userId);
@@ -105,7 +106,7 @@ export class AuthenticationService{
           Storage.set({key: 'my-role', value: val_role});
         })
         
-        console.log('aws whole login query --> ',tokens)
+        console.log('aws whole login query ---> ',tokens)
         Storage.set({key: USERID, value: tokens.userId});
         Storage.set({key: USER_ROLES, value: tokens.roles});
         Storage.set({key: CORE_SIM, value: tokens.core_sim});
@@ -113,6 +114,7 @@ export class AuthenticationService{
         Storage.set({key: CORE_NAME, value: tokens.coreName});
         Storage.set({key: LOCATION, value: tokens.location});
         Storage.set({key: TWILIO, value: 'false'});
+        Storage.set({key: CODE_EXPIRY, value: tokens.code_expiry});
 
         const storeAccess = Storage.set({key: TOKEN_KEY, value: tokens.accessToken});
         const storeRefresh = Storage.set({key: REFRESH_TOKEN_KEY, value: tokens.refreshToken});
