@@ -16,7 +16,7 @@
    <form (ngSubmit)="psswordRST_request()" [formGroup]="credentials">
      <div class="input-group">
        <ion-item>
-         <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+         <ion-input class="email" type="email" placeholder="Email"  formControlName="email"></ion-input>
        </ion-item>
        <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
          <span *ngIf="email.errors?.required">Email es requerido</span>
