@@ -1,0 +1,44 @@
+db.code_events.find().sort({createdAt:-1})
+
+
+db.code_events.find({createdAt : {
+  $gt: new ISODate('2021-05-21T00:00:00.000Z'),
+  $lt : new ISODate('2022-05-25T23:59:59.999Z')
+}})
+
+db.cores.find({})
+
+db.cores.find({_id:ObjectId('60afd3955d8280dc19460c3a')},{enable:1})
+
+db.code_events.find().sort({createdAt:-1})
+
+db.visitors.find().sort({createdAt:-1})
+db.visitors.updateMany({},{$set:{'uuid':$sim}},{multi:true})
+
+
+db.users.update({},{$set:{'locked':false}},{multi:true})
+db.users.update({},{$set:{'uuid':'b8f7c9908aa28584'}},{multi:true})
+
+
+db.users.updateOne({_id:ObjectId('60c53a683371034c5ac6637f')},{$set:{locked:true}})
+
+db.users.find().forEach(function(doc){
+  db.users.updateOne({_id:doc._id},{$set:{uuid:doc.sim}});
+});
+
+
+db.users.find().sort({createdAt:-1}).count()
+
+db.users.find({_id:ObjectId('60c64c04df6f556a946d891f')})
+
+db.visitors.find({}).sort({})
+db.codes.find().sort({createdAt:-1})
+db.codes.find({_id : ObjectId('62fd15f6e0e619003acecea9')})
+6303994aae174f003a97e1e3
+
+db.visitors.find({}).sort({createdAt:-1})
+/*
+db.cores.update({_id:ObjectId('60afd3955d8280dc19460c3a')},{$set: {Sim:'+526632032532'}})
+
+db.users.update({_id:ObjectId('60c64c04df6f556a946d891f')},{$set : {locked:true}})
+db.cores.update({},{$set:{enable:true}},{multi:true})
